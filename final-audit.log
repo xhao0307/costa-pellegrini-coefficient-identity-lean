@@ -1,0 +1,24 @@
+CostaPellegrini.intervalProduct_eq_totalSum_mul_deleted (k : ℕ) (hk : 2 ≤ k) :
+  CostaPellegrini.intervalProduct k = CostaPellegrini.totalSum k * CostaPellegrini.deletedIntervalProduct k
+CostaPellegrini.trace_X_mul_deleted_eq_c (k : ℕ) (hk : 2 ≤ k) (j : Fin k) :
+  CostaPellegrini.trace k (MvPolynomial.X j * CostaPellegrini.deletedIntervalProduct k) =
+    CostaPellegrini.cCoefficient k j
+'CostaPellegrini.intervalSum_full' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CostaPellegrini.intervalProduct_eq_totalSum_mul_deleted' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CostaPellegrini.trace_X_mul_deleted_eq_c' depends on axioms: [propext, Classical.choice, Quot.sound]
+CostaPellegrini.coefficient_identity {k : ℕ} (hk : 2 ≤ k) (j : Fin k) :
+  CostaPellegrini.eCoefficient k j = (-1) ^ ((k - 1) / 2) * CostaPellegrini.cCoefficient k j
+def CostaPellegrini.cExponent : (k : ℕ) → Fin k → Fin k →₀ ℕ :=
+fun k j => Finsupp.onFinset Finset.univ (fun i => if i = j then k - 2 else k - 1) ⋯
+def CostaPellegrini.eExponent : (k : ℕ) → Fin k → Fin k →₀ ℕ :=
+fun k j => Finsupp.onFinset Finset.univ (fun i => if i = j then 0 else k) ⋯
+def CostaPellegrini.cCoefficient : (k : ℕ) → Fin k → ℤ :=
+fun k j =>
+  (CostaPellegrini.vandermonde k * CostaPellegrini.deletedIntervalProduct k).coeff (CostaPellegrini.cExponent k j)
+def CostaPellegrini.eCoefficient : (k : ℕ) → Fin k → ℤ :=
+fun k j => (CostaPellegrini.vandermonde k * CostaPellegrini.intervalProduct k).coeff (CostaPellegrini.eExponent k j)
+'CostaPellegrini.zero_coordinate_coefficient_bridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CostaPellegrini.trace_totalSum_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CostaPellegrini.sign_blockReverse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CostaPellegrini.exists_boundary_multiplier' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CostaPellegrini.coefficient_identity' depends on axioms: [propext, Classical.choice, Quot.sound]

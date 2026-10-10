@@ -1,0 +1,16 @@
+.lake/
+*.olean
+*.ilean
+*-scratch.lean
+*-audit.lean
+*Audit.lean
+!Audit.lean
+*-compile.log
+*-audit.log
+*-receipt.json
+*.aux
+*.log
+!verification/*.log
+*.out
+*.pdf
+!final-audit.log

@@ -1,0 +1,34 @@
+{
+  "command": [
+    "lake",
+    "env",
+    "lean",
+    "-DwarningAsError=true",
+    "-Ddebug.skipKernelTC=false",
+    "Audit.lean"
+  ],
+  "audit_exit_code": 0,
+  "audit_elapsed_seconds": 9.55304425000213,
+  "terminal_theorem": "CostaPellegrini.coefficient_identity",
+  "scope": "Every integer k>=2 and every j:Fin k, exact integer coefficients in the Costa-Pellegrini2020 family",
+  "source_sha256": {
+    "Annihilation.lean": "97ee6eee9660648a2877abba0ecb877920222020fea77b3d47e1aae1474fcebd",
+    "Audit.lean": "681c7f6d15b3114dc61a63bd17af9044e65631eb92537cacd6f882ee82c0e9be",
+    "Boundary.lean": "3306714741afe7732a74166053f055737f83af283b5ce23a744421631496f687",
+    "Covariance.lean": "047cc0209439f6025c82ea976189da6f1abffdce496a1e59a24cad250143f8be",
+    "Definitions.lean": "961fe7c75c66098738bee77a75946d7aa0f21785bbc5edf22d70cde721480642",
+    "Identity.lean": "c61c14d3369dd7c98eaa9be003c2f7ac19a0b7aed7ca540d83194a8d623fdd77",
+    "IntervalBijection.lean": "d14372a228d900e31f77fa713a934ba7b1661c6e476b9c54278da643c996c942",
+    "PrefixProduct.lean": "b4dcb339e9a9ec6eb830188ad03e263be3b2e2d18add85b061e93b3b3d51f4fc",
+    "Reflection.lean": "170a02e2e8cfb762f3af96eb8486bfb99f3fa93a1614a4d2260a64208d15f2d2",
+    "Signs.lean": "72fbf4856f674522663de2bb85a94ce25c878a5d90a6ed572fd08ee2511cdf18",
+    "Transport.lean": "289506d453f183259e305db1f6448fa6973416136f0d1c1e69abb7c0ff0a91bf"
+  },
+  "Lean": "4.34.1",
+  "Mathlib": "d13f23b723b8a846827a245b89c10fc7d3f11612",
+  "fresh_project_build": "Passed all10proofmodules+Audit from initially absent own .lake/build; upstream9pinnedpackages reused, not a full fresh third-party source rebuild",
+  "full_Graham_solved": false,
+  "award_eligibility_established": false,
+  "priority_established": false,
+  "command_note": "Executed with the pinned Lean4.34.1 toolchain; local temporary toolchain path omitted from publication."
+}

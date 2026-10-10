@@ -1,0 +1,19 @@
+import Identity
+
+#check CostaPellegrini.intervalProduct_eq_totalSum_mul_deleted
+#check CostaPellegrini.trace_X_mul_deleted_eq_c
+
+#print axioms CostaPellegrini.intervalSum_full
+#print axioms CostaPellegrini.intervalProduct_eq_totalSum_mul_deleted
+#print axioms CostaPellegrini.trace_X_mul_deleted_eq_c
+
+#check CostaPellegrini.coefficient_identity
+#print CostaPellegrini.cExponent
+#print CostaPellegrini.eExponent
+#print CostaPellegrini.cCoefficient
+#print CostaPellegrini.eCoefficient
+#print axioms CostaPellegrini.zero_coordinate_coefficient_bridge
+#print axioms CostaPellegrini.trace_totalSum_mul
+#print axioms CostaPellegrini.sign_blockReverse
+#print axioms CostaPellegrini.exists_boundary_multiplier
+#print axioms CostaPellegrini.coefficient_identity

@@ -1,0 +1,180 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=28mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\coeff}[2]{\left[#1\right]#2}
+\newcommand{\D}{\mathcal D}
+\title{An integer proof of the Costa--Pellegrini coefficient identity}
+\author{A Codex-assisted research project\\
+  \small Project account: \texttt{xhao0307}}
+\date{10 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We prove, for every $k\ge2$ and every $1\le j\le k$, the equality between
+two coefficient families discussed by Costa and Pellegrini in 2020.
+The proof uses the signed expansion of a Vandermonde polynomial and an
+involution of intervals. All steps are identities over the integers;
+no interpolation denominators or coefficient nonvanishing assumptions
+are required. The accompanying Lean project proves the full universal
+statement. This identity does not settle Graham's rearrangement conjecture.
+Publication priority and prize eligibility are not asserted.
+\end{abstract}
+
+\section{The published question}
+Work in $\mathbb Z[x_1,\ldots,x_k]$, and define
+\[
+ T=\sum_i x_i,\qquad V=\prod_{i<r}(x_r-x_i),\qquad
+ H=\prod_{1\le i<r\le k}(x_i+\cdots+x_r).
+\]
+Let $h$ be the product defining $H$ with its single full-interval factor
+$T$ deleted, so $H=Th$. In particular $h$ is a polynomial before any
+specialization. Put
+\[
+ c_{k,j}=\coeff{x_j^{k-2}\prod_{i\ne j}x_i^{k-1}}{Vh},\qquad
+ e_{k,j}=\coeff{\prod_{i\ne j}x_i^k}{VH}.
+\]
+The distinguished variable has exponent zero in the second extraction.
+These are the families in \cite[Section 4.1, p.~485]{CP}, where an
+all-$k$ proof of their observed equality is requested.
+
+\begin{theorem}\label{thm:main}
+For every $k\ge2$ and $1\le j\le k$,
+\[
+ e_{k,j}=(-1)^{\binom{k-1}{2}}c_{k,j}
+        =(-1)^{\lfloor(k-1)/2\rfloor}c_{k,j}.
+\]
+\end{theorem}
+
+\section{Integer coefficient operations}
+Set $M=\prod_i x_i^{k-1}$ and $\D(P)=\coeff{M}{VP}$.
+Write $Z_j$ for setting $x_j$ to zero. A variable permutation $\sigma$
+acts by substitution $P\circ\sigma=P(x_{\sigma(1)},\ldots,x_{\sigma(k)})$.
+
+\begin{lemma}\label{lem:trace}
+For every polynomial $Q$ and permutation $\sigma$,
+\[
+ \D(TQ)=0,\qquad
+ \D(P\circ\sigma)=\operatorname{sgn}(\sigma)\D(P),\qquad
+ c_{k,j}=\D(x_jh).
+\]
+\end{lemma}
+\begin{proof}
+The last equality is coefficient shifting. The middle equality follows
+because $M$ is invariant under permutations and $V$ changes by their sign.
+For the first equality it suffices, by linearity, to take
+$Q=\prod_t x_t^{a_t}$. Expand
+$V=\sum_r\operatorname{sgn}(r)\prod_t x_t^{r_t}$, where $r$ ranges over
+permutations of the exponent labels $0,\ldots,k-1$.
+A contribution to $\D(TQ)$ selects an index $i$ and satisfies
+$r_t+a_t+\delta_{t,i}=k-1$ for every $t$.
+Thus $r_i\le k-2$. Let $l$ be the unique index with $r_l=r_i+1$.
+Swap the exponent labels at $i,l$ and select $l$ instead of $i$.
+All resulting exponents remain unchanged, while the sign reverses.
+This is a fixed-point-free involution of the contributing terms, so they
+cancel over $\mathbb Z$.
+\end{proof}
+
+\begin{lemma}\label{lem:zero}
+If $P$ is independent of $x_j$, then
+\[
+ \coeff{\prod_{i\ne j}x_i^k}{V(Z_jx)P}
+     =(-1)^{k-1}\D(P).
+\]
+Consequently $e_{k,j}=(-1)^{k-1}\D(H(Z_jx))$.
+\end{lemma}
+\begin{proof}
+In $\D(P)$, independence forces the Vandermonde exponent at $j$ to be
+$k-1$. In $V(Z_jx)$, only terms with exponent zero there survive.
+Cycle the exponent labels $0\mapsto1\mapsto\cdots\mapsto k-1\mapsto0$.
+This bijects the two term families and multiplies the sign by $(-1)^{k-1}$.
+At every other coordinate the Vandermonde exponent increases by one,
+so the exponent required from $P$ is unchanged:
+$k-(r_i+1)=k-1-r_i$. Apply this with $P=H(Z_jx)$; the exponent-zero
+coefficient is unchanged by setting $x_j$ to zero.
+\end{proof}
+
+\section{A direct interval involution}
+Fix $j$ and let
+\[
+ \rho_jx=(x_{j-1},\ldots,x_1,x_j,x_k,\ldots,x_{j+1}).
+\]
+Its sign is
+$\alpha=(-1)^{\binom{j-1}{2}+\binom{k-j}{2}}$.
+Let $\beta=(-1)^{k-1+(j-1)(k-j)}$.
+
+\begin{lemma}\label{lem:boundary}
+The integer polynomial $H(Z_j\rho_jx)-\beta x_jh$ is divisible by $T$.
+\end{lemma}
+\begin{proof}
+Work in the quotient by $(T)$, a commutative ring; no domain cancellation
+is needed. Use zero-based indices $0,\ldots,k-1$ in this paragraph,
+with distinguished index $d=j-1$. Put $y=Z_d\rho_dx$.
+For an inclusive interval $[a,b]$ its sum transforms as follows:
+\[
+ \sum_{i=a}^b y_i=
+ \begin{cases}
+  \sum_{i=d-1-b}^{d-1-a}x_i,& b<d,\\
+  \sum_{i=k+d-b}^{k+d-a}x_i,& a>d,\\
+  -\sum_{i=d-a}^{k+d-b-1}x_i,&a\le d\le b.
+ \end{cases}
+\]
+In the crossing case the reflected left and right tails, together with
+the displayed complementary interval, partition all original indices;
+the total sum is zero in this quotient.
+These formulas define an involution on all nonempty intervals. It swaps
+the full interval $[0,k-1]$ and the singleton $[d,d]$; other singletons
+remain singletons and all other strict intervals remain strict intervals.
+Therefore the strict interval factors in $H(y)$ correspond bijectively
+to the factors of $h(x)$ together with $x_d$.
+The number of crossing strict intervals is
+\[
+ (d+1)(k-d)-1=k-1+d(k-1-d).
+\]
+Only these factors contribute a minus sign. Their product proves
+$H(y)=\beta x_dh$ in the quotient, which is exactly the claimed
+divisibility over $\mathbb Z$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Let $P=H(Z_jx)$. Since $\rho_j$ fixes $j$, it commutes with $Z_j$.
+Lemmas~\ref{lem:trace} and \ref{lem:boundary} give
+\[
+ \alpha\D(P)=\D(H(Z_j\rho_jx))=\beta\D(x_jh)=\beta c_{k,j}.
+\]
+As $\alpha^2=1$, Lemma~\ref{lem:zero} yields
+$e_{k,j}=(-1)^{k-1}\alpha\beta c_{k,j}$.
+Put $u=j-1$, $v=k-j$. Then $u+v=k-1$ and
+$\binom{u+v}{2}=\binom u2+\binom v2+uv$,
+so the total sign is $(-1)^{\binom{k-1}{2}}$.
+For $n=2r$ or $2r+1$, $\binom n2$ has the parity of $r$,
+giving the other stated form.
+\end{proof}
+
+\section{Formal verification and scope}
+The accompanying project uses Lean 4.34.1 and Mathlib revision
+\texttt{d13f23b723b8a846827a245b89c10fc7d3f11612}.
+Its theorem \texttt{CostaPellegrini.coefficient\_identity} quantifies over
+all $k\ge2$ and all $j:\mathrm{Fin}\,k$, with precisely the above integer
+coefficient definitions. The proof uses no numerical rank restriction,
+coefficient nonvanishing premise or additional mathematical axiom.
+The transitive axiom audit reports only
+\texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}.
+
+This theorem equates two coefficient vectors. It does not prove that
+either vector is nonzero modulo every relevant prime and therefore does
+not settle Graham's original conjecture. The question's published source
+is identified here, but worldwide priority, independent human peer review,
+catalogue inclusion and reward entitlement have not been established.
+The project was initiated by its human requester; Codex developed the
+mathematical arguments and Lean scripts with coordinated AI reviews.
+
+\begin{thebibliography}{9}
+\bibitem{CP} S. Costa and M. A. Pellegrini,
+\emph{Some new results about a conjecture by Brian Alspach},
+Archiv der Mathematik \textbf{115} (2020), 479--488.
+\href{https://doi.org/10.1007/s00013-020-01507-7}{doi:10.1007/s00013-020-01507-7}.
+\end{thebibliography}
+\end{document}

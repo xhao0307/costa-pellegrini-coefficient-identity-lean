@@ -1,0 +1,133 @@
+{
+  "recorded_at_utc": "2026-10-10T13:02:56.359872+00:00",
+  "status": "semantic_pass_full_integer_coefficient_identity",
+  "review_kind": "coordinated_AI_source_and_statement_review",
+  "reviewer": "identity_transport",
+  "reviewer_disclosure": "Reviewer authored Transport, Reflection, Annihilation and Boundary; this is not external human peer review or a disjoint implementation review.",
+  "primary_sources": [
+    {
+      "url": "https://d-nb.info/1221514253/34",
+      "read_scope": "Published PDF text, printed pages 483-485. Original definitions and all-rank coefficient-identity request.",
+      "rendering_limitation": "No successful screenshot inspection claimed."
+    },
+    {
+      "url": "https://arxiv.org/html/2003.05939v2#S4.SS1",
+      "read_scope": "Section 4.1 actual equations for g/F/c/e and the sign relation, cross-checked against published PDF."
+    }
+  ],
+  "terminal_statement": "forall k : Nat, 2 <= k -> forall j : Fin k, eCoefficient k j = (-1 : Int)^((k-1)/2) * cCoefficient k j",
+  "paper_index_translation": "Lean Fin index i maps to paper index i.val+1; bijective onto 1..k.",
+  "coefficient_ring": "MvPolynomial (Fin k) Int",
+  "result_checks": {
+    "vandermonde_orientation": "matches X_right-X_left",
+    "interval_factor_endpoints": "closed intervals with distinct endpoints",
+    "full_factor_deletion": "exact named full interval removed before substitution",
+    "c_exponents": "k-2 at j, k-1 elsewhere",
+    "e_exponents": "0 at j, k elsewhere",
+    "sign": "natural floor((k-1)/2)",
+    "rank_scope": "all k>=2, no upper bound",
+    "index_scope": "all Fin k indices, including interiors",
+    "hidden_missing_math_hypotheses": false,
+    "empty_type_vacuity": false,
+    "finite_rank_substitution_for_terminal": false,
+    "domain_cancellation_assumption": false,
+    "semantic_defect_found": false
+  },
+  "fresh_project_build": {
+    "status": "passed_as_recorded_in_parent_verification_receipt",
+    "proof_modules": [
+      "Definitions.lean",
+      "Transport.lean",
+      "Reflection.lean",
+      "Annihilation.lean",
+      "PrefixProduct.lean",
+      "IntervalBijection.lean",
+      "Boundary.lean",
+      "Covariance.lean",
+      "Signs.lean",
+      "Identity.lean"
+    ],
+    "project_config_roots_checked": true,
+    "project_warningAsError_and_skipKernelTC_false_flags_checked": true,
+    "source_hashes_match_initial_review_and_parent_receipt": {
+      "Definitions.lean": true,
+      "Transport.lean": true,
+      "Reflection.lean": true,
+      "Annihilation.lean": true,
+      "PrefixProduct.lean": true,
+      "IntervalBijection.lean": true,
+      "Boundary.lean": true,
+      "Covariance.lean": true,
+      "Signs.lean": true,
+      "Identity.lean": true
+    },
+    "third_party_sources_fresh_rebuilt": false,
+    "upstream_pinned_packages_reused": 9,
+    "parent_build_session_not_taken_over": true,
+    "verification_receipt_path": "verification.json",
+    "verification_receipt_sha256": "93731a221cf79aa88ee362e60253d7bfca3a31501fbb26f27a73df68668e5c3a",
+    "final_audit_log_path": "final-audit.log",
+    "final_audit_log_sha256": "f9074d4117b89a88f2dd08979b2ef7f58f745be07b1ef1c6c44859d7323da26f",
+    "audit_exit_code": 0,
+    "terminal_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "exact_terminal_printed_type_checked": true
+  },
+  "limitations": [
+    "Not a full Graham or Alspach proof",
+    "No uniform nonvanishing or content conclusion",
+    "No priority or novelty determination",
+    "No catalog or award eligibility determination",
+    "No external human peer review"
+  ],
+  "source_files": {
+    "Definitions.lean": {
+      "sha256": "961fe7c75c66098738bee77a75946d7aa0f21785bbc5edf22d70cde721480642",
+      "bytes": 3800
+    },
+    "Transport.lean": {
+      "sha256": "289506d453f183259e305db1f6448fa6973416136f0d1c1e69abb7c0ff0a91bf",
+      "bytes": 8408
+    },
+    "Reflection.lean": {
+      "sha256": "170a02e2e8cfb762f3af96eb8486bfb99f3fa93a1614a4d2260a64208d15f2d2",
+      "bytes": 7787
+    },
+    "Annihilation.lean": {
+      "sha256": "97ee6eee9660648a2877abba0ecb877920222020fea77b3d47e1aae1474fcebd",
+      "bytes": 6199
+    },
+    "PrefixProduct.lean": {
+      "sha256": "b4dcb339e9a9ec6eb830188ad03e263be3b2e2d18add85b061e93b3b3d51f4fc",
+      "bytes": 4405
+    },
+    "IntervalBijection.lean": {
+      "sha256": "d14372a228d900e31f77fa713a934ba7b1661c6e476b9c54278da643c996c942",
+      "bytes": 8044
+    },
+    "Boundary.lean": {
+      "sha256": "3306714741afe7732a74166053f055737f83af283b5ce23a744421631496f687",
+      "bytes": 11370
+    },
+    "Covariance.lean": {
+      "sha256": "047cc0209439f6025c82ea976189da6f1abffdce496a1e59a24cad250143f8be",
+      "bytes": 1777
+    },
+    "Signs.lean": {
+      "sha256": "72fbf4856f674522663de2bb85a94ce25c878a5d90a6ed572fd08ee2511cdf18",
+      "bytes": 1822
+    },
+    "Identity.lean": {
+      "sha256": "c61c14d3369dd7c98eaa9be003c2f7ac19a0b7aed7ca540d83194a8d623fdd77",
+      "bytes": 2061
+    }
+  },
+  "review_document": {
+    "path": "identity-semantic-review.md",
+    "sha256": "509d0f0391d8415e33644037e5f39df64d7c32d79662ee68e3de60e6e74244c8"
+  },
+  "post_review_verification_at_utc": "2026-10-10T13:05:43.971686+00:00"
+}
